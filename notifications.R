@@ -1,5 +1,5 @@
 pw <- {
-  "s0.Much.Data"
+  "pass"
 }
 setwd("/Users/ashimdatta/Enterprise/notifications")
 getwd()
@@ -28,9 +28,9 @@ library("RNetLogo")
 
 
 drv <- dbDriver("PostgreSQL")
-con <- dbConnect(drv, dbname = "analytics",
-                 host = "10.223.192.6", port = 5432,
-                 user = "etl", password = pw)
+con <- dbConnect(drv, dbname = "databasename",
+                 host = "server", port = 1111,
+                 user = "user", password = pw)
 text_content<-dbGetQuery(con,"select userid, (created at time zone 'UTC') AT TIME ZONE 'PDT' as created, checkinid, commentid, comments as text from public.ratings_usercheckincomments
       where   created > now() - interval '24 hour'  
                          and char_length(comments)<=250            
